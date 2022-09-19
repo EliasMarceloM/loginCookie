@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>login</title>
+	<style>
+		* {
+			margin: 0px;
+			padding: 0px;
+			border: 0px;
+		}
+
+		form {
+			background-color: green;
+			margin: 0px;
+			padding: 10px;
+			border: 0px;
+		}
+	</style>
+</head>
+
+<body>
+
+
+	<h1 id="trocar">Logado</h1>
+	<br/>
+	<a href="/restrito">clique para acesssar o ambiente restrito para que possui o cookie de usúario</a>
+	<script>
+		function obtNomeUser(identificador, numeroCorte) {
+			var palavraCorte = "";
+			let oCookie = decodeURIComponent(document.cookie);
+			alert(oCookie)
+			let corte = oCookie.split(';');
+			
+			for (let i = 0; i < corte.length; i++) {
+				//alert(corte[i].indexOf(identificador)) 
+				//if (corte[i].indexOf("nUser") == 0) {
+				if (corte[i].indexOf(identificador) > -1) {
+		
+					//alert(corte[i]+" "+"aqui tem ");
+					for (let x = 0; x < 20; x++) {
+						//alert(corte[i]+" "+"aqui tem ");
+						//----
+						//palavraCorte=corte[i];
+						//alert(palavraCorte);
+						//------
+						//palavraCorte=palavraCorte+corte[i].charAt(x);
+						//alert(palavraCorte);
+
+
+						if (x > numeroCorte) {
+							palavraCorte = palavraCorte + corte[i].charAt(x);
+							alert(palavraCorte);
+
+						} else {
+							palavraCorte = corte[i].charAt(x);
+							alert(palavraCorte);
+
+						}
+
+					}
+
+				} else {
+					alert(corte[i] + " " + "não é igual a nUser");
+					//alert(corte[i].indexOf(identificador)) ;
+				}
+			}
+			if (palavraCorte == "" || palavraCorte == " ") {
+				palavraCorte = "não achou no cookie"
+				return palavraCorte;
+			} else {
+				return palavraCorte;
+			}
+
+
+		}//----------
+
+
+		document.getElementById("trocar").innerHTML ="senhor: "+ obtNomeUser("nUser", 7);
+
+
+	</script>
+
+
+
+</body>
+
+</html>
